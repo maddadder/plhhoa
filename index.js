@@ -151,11 +151,14 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
         res.redirect('/login');
 };
-app.get('/', ensureAuthenticated, function(req, res) {
-    const indexHtml = fs.existsSync(path.join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+app.get('/', function(req, res) {
+    const indexHtml = 'index.html';
     res.render(indexHtml, {req, res, user: req.user})
 });
-
+app.get('/authenticated', ensureAuthenticated, function(req, res) {
+    const indexHtml = 'authenticated.html';
+    res.render(indexHtml, {req, res, user: req.user})
+});
 // '/account' is only available to logged in user
 app.get('/account', ensureAuthenticated, function(req, res) {
     res.render('account', { user: req.user });
@@ -226,7 +229,7 @@ app.post('/auth/openid/return',
     },
     function(req, res) {
         log.info('We received a return from AzureAD.');
-        res.redirect('/');
+        res.redirect('/authenticated');
 });
 
 // 'logout' route, logout from passport, and destroy the session with AAD.
