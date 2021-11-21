@@ -1,0 +1,5 @@
+export clientId="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+export clientSecret="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+export tenantDomain="leenet"
+export expressSecret="a_long_password"
+export baseUri="https://plhhoa.azurewebsites.net"
