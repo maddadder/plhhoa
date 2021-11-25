@@ -223,7 +223,7 @@ app.post('/auth/openid/return',
         passport.authenticate('azuread-openidconnect', 
         { 
             response: res,                      // required
-            failureRedirect: '/error5'  
+            failureRedirect: '/'                // go home
         }
         )(req, res, next);
     },
